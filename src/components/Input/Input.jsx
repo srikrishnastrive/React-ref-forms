@@ -13,7 +13,7 @@ function  Input ({type,id,label,checkOnBlur,placeholder },ref) {
         setIsValid(true);
         isShake(false);
 
-    },[text]);
+    },[formInput[label]]);
     useImperativeHandle(ref,()=>{
         return {
             focus : () => {localRef.current.focus()},
@@ -30,7 +30,7 @@ function  Input ({type,id,label,checkOnBlur,placeholder },ref) {
         <input  className={`${(!isValid) ?"error-input" : ""} ${shake ? 'shake' : " "} `}
             type= {type} 
             id = {id}
-            value={text}
+            value={formInput[label] || ""}
             onChange={(e)=> {
                 setText(e.target.value);
                 setFormInput({...formInput,[label]:e.target.value})
